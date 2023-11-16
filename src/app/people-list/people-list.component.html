@@ -1,1 +1,8 @@
 <h2>Here is an the first sub heading</h2>
+
+<form action="">
+    <label for="filter">Name filter: </label>
+    <input id="filter" type="text" placeholder=" Enter name filter here... " [formControl]="nameFilter">
+</form>
+
+<p>{{ input$ | async }}</p>
