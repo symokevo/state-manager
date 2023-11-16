@@ -6,3 +6,9 @@
 </form>
 
 <p>{{ input$ | async }}</p>
+
+<ul *ngIf="input$">
+    <li *ngFor="let item of input$ | async"> 
+        {{item}}
+    </li>
+</ul>

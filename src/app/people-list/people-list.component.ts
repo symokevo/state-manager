@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { debounceTime, distinctUntilChanged, tap } from 'rxjs';
+import { debounceTime, distinctUntilChanged, switchMap, tap } from 'rxjs';
+import { TrippinService } from '../trippin.service';
 
 @Component({
   selector: 'app-people-list',
@@ -18,7 +19,12 @@ export class PeopleListComponent {
     tap((f) => console.log(`Before: ${f}`)),
     debounceTime(1000),
     distinctUntilChanged(),
-    tap((f) => console.log(`After: ${f}`))
+    tap((f) => console.log(`After: ${f}`)),
+
+    // utilize the trippinService here
+    switchMap(name => this.trippin.getPeople(name ?? ''))
   );
   // valueChanges - observer to take note of changes
+
+  constructor(private trippin: TrippinService) {}
 }
