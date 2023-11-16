@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { tap } from 'rxjs';
+import { debounceTime, distinctUntilChanged, tap } from 'rxjs';
 
 @Component({
   selector: 'app-people-list',
@@ -15,9 +15,10 @@ export class PeopleListComponent {
   // FormControl -> angular representation of control in a form.
   // eg minlength, starting values, valid entries an so on. bridging html and angular implementation 
   public input$ = this.nameFilter.valueChanges.pipe(
-    tap(
-      (f) => console.log(f)
-    )
+    tap((f) => console.log(`Before: ${f}`)),
+    debounceTime(1000),
+    distinctUntilChanged(),
+    tap((f) => console.log(`After: ${f}`))
   );
   // valueChanges - observer to take note of changes
 }
