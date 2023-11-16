@@ -9,7 +9,7 @@ export class TrippinService {
   constructor() { }
 
   public getPeople(nameFilter?: string) : Observable<any[]> {
-    // Access the Trippin api Data here
+    // Access the Trippin OData api here
     return of([1, 2, 3, 4, 5, 6]);
   }
 }
