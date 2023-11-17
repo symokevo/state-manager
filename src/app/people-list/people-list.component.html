@@ -5,10 +5,10 @@
     <input id="filter" type="text" placeholder=" Enter name filter here... " [formControl]="nameFilter">
 </form>
 
-<p>{{ input$ | async }}</p>
+<p>{{ data$ | async }}</p>
 
-<ul *ngIf="input$">
-    <li *ngFor="let item of input$ | async"> 
-        {{item}}
+<ul *ngIf="data$">
+    <li *ngFor="let item of (data$ | async)?.value"> 
+        {{item.UserName}}
     </li>
 </ul>

@@ -1,5 +1,6 @@
-import { ApplicationConfig, InjectionToken } from '@angular/core';
+import { ApplicationConfig, InjectionToken, importProvidersFrom } from '@angular/core';
 import { provideRouter } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';  
 
 import { routes } from './app.routes';
 
@@ -12,5 +13,7 @@ export const appConfig: ApplicationConfig = {
       provide: TRIPPIN_BASE_URL,
       useValue: 'https://services.odata.org/Trippinrestierservice/(S(l541tqt3z5um4rawl52oawae))/'
     }, 
+    importProvidersFrom(HttpClientModule)
+    // or you could use provideHttpClient() here
   ],
 };
